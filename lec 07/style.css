@@ -1,0 +1,18 @@
+.box {
+    color:red;
+    border:5px solid blue;
+    display: inline-block;
+    padding: 10px 50px 50px; /*top right bottom left if top bottom and right left is same we can skip last two measurements. padding: 10px 50px;*/
+    margin: 5px 30px 0 25px; /*top left bottom right margin: 50px*/
+    width: 100px;
+    height: 80px;
+}
+
+.highlight {
+    text-decoration: underline;
+    letter-spacing: 5px;
+    font-style: italic;
+    word-spacing: 10px;
+    font-size: 100%;
+    font-family: 'Courgette', cursive;
+}
