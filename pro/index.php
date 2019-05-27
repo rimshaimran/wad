@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<?php
+    $con = mysqli_connect("localhost", "root", "", "techboxdb");
+    if (!$con)
+    {
+        echo "Not Connected";
+    }
+    else{
+        echo "Connected";
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +25,7 @@
     <div class="row">
         <div class="col-12 no-padding">
             <nav class="navbar navbar-light bg-light navbar-expand-sm fixed-top">
-                <a class="navbar-brand" href="index.html"><img src="media/logo.png" width="175" height="50" alt="logo">
+                <a class="navbar-brand" href="index.php"><img src="media/logo.png" width="175" height="50" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button"
                         data-toggle="collapse"
@@ -38,13 +48,13 @@
                     <div class="col-lg-3 col-md-4 col-sm-5">
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-sm-right">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html"><i class="fas fa-heart sc-color fa-2x"></i></a>
+                                <a class="nav-link" href="index.php"><i class="fas fa-heart sc-color fa-2x"></i></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html"><i class="fas fa-shopping-cart sc-color fa-2x"></i></a>
+                                <a class="nav-link" href="index.php"><i class="fas fa-shopping-cart sc-color fa-2x"></i></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html"> <span class="sc-fs">Login </span></a>
+                                <a class="nav-link" href="index.php"> <span class="sc-fs">Login </span></a>
                             </li>
                         </ul>
                     </div>
@@ -64,11 +74,19 @@
                     Categories
                 </a>
                 <ul class="collapse show list-unstyled" id="homeSubmenu">
-                    <li><a class='nav-link'  href='#'>Laptops</a></li>
+                    <?php
+                        $catQuery = "select * from categories";
+                        $catQueryResult= mysqli_query($con,$catQuery);
+                        while($row= mysqli_fetch_assoc($catQueryResult)) {
+                            $title=$row['category_title'];
+                            echo '<li><a class=\'nav-link\'  href=\'#\'>'.$title.'</a></li>';
+                        }
+                    ?>
+                    <!--
                     <li><a class='nav-link'  href='#'>Computers</a></li>
                     <li><a class='nav-link'  href='#'>Mobiles</a></li>
                     <li><a class='nav-link'  href='#'>Watches</a></li>
-                    <li><a class='nav-link'  href='#'>Cameras</a></li>
+                    <li><a class='nav-link'  href='#'>Cameras</a></li>-->
                 </ul>
             </li>
             <li class="active">
@@ -77,11 +95,19 @@
                     Brands
                 </a>
                 <ul class="collapse show list-unstyled" id="pageSubmenu">
-                    <li><a class='nav-link'  href='#'>HP</a></li>
+                    <?php
+                    $catQuery = "select * from brands";
+                    $catQueryResult= mysqli_query($con,$catQuery);
+                    while($row= mysqli_fetch_assoc($catQueryResult)) {
+                        $title=$row['brand_title'];
+                        echo '<li><a class=\'nav-link\'  href=\'#\'>'.$title.'</a></li>';
+                    }
+                    ?>
+                    <!--<li><a class='nav-link'  href='#'>HP</a></li>
                     <li><a class='nav-link'  href='#'>DELL</a></li>
                     <li><a class='nav-link'  href='#'>APPLE</a></li>
                     <li><a class='nav-link'  href='#'>SAMSUNG</a></li>
-                    <li><a class='nav-link'  href='#'>SONY</a></li>
+                    <li><a class='nav-link'  href='#'>SONY</a></li>-->
                 </ul>
             </li>
             <li>
