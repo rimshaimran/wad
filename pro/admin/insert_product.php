@@ -1,4 +1,29 @@
 <!DOCTYPE html>
+<?php
+$con=mysqli_connect("localhost","root","","techboxdb");
+if(isset($_POST['insert_pro'])){
+    $title=$_POST['pro_title'];
+    $cat=$_POST['pro_cat'];
+    $brand=$_POST['pro_brand'];
+    $price=$_POST['pro_price'];
+    $desc=$_POST['pro_desc'];
+    $kw=$_POST['pro_keywords'];
+
+    print_r($_POST);
+
+    $q = "insert into products(pro_title,pro_brand,pro_price,pro_detail,pro_cat,pro_kw)
+values ('$title','$brand','$price','$desc','$cat','$kw')";
+    echo $q;
+    mysqli_query($con,$q);
+}
+
+/*if($con)
+{
+    echo "Connected";
+}
+else
+    echo "Not Connected";*/
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,6 +69,15 @@
                     </div>
                     <select class="form-control" id="pro_cat" name="pro_cat">
                         <option>Select Category</option>
+                        <?php
+                        $catQuery = "select * from categories";
+                        $catQueryResult= mysqli_query($con,$catQuery);
+                        while($row= mysqli_fetch_assoc($catQueryResult)) {
+                            $category_id=$row['category_id'];
+                            $title=$row['category_title'];
+                            echo "<option value='$category_id'>$title</option>";
+                        }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -60,6 +94,15 @@
                     </div>
                     <select class="form-control" id="pro_brand" name="pro_brand">
                         <option>Select Brand</option>
+                        <?php
+                        $catQuery = "select * from brands";
+                        $catQueryResult= mysqli_query($con,$catQuery);
+                        while($row= mysqli_fetch_assoc($catQueryResult)) {
+                            $brand_id=$row['brand_id'];
+                            $title=$row['brand_title'];
+                            echo "<option value='$brand_id'>$title</option>";
+                        }
+                        ?>
                     </select>
                 </div>
             </div>
