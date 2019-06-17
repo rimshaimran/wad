@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <?php
-    $con = mysqli_connect("localhost", "root", "", "techboxdb");
-    if (!$con)
-    {
-        echo "Not Connected";
-    }
-    else{
-        echo "Connected";
-    }
+require "server/functions.php";
 ?>
 <html lang="en">
 <head>
@@ -74,19 +67,7 @@
                     Categories
                 </a>
                 <ul class="collapse show list-unstyled" id="homeSubmenu">
-                    <?php
-                        $catQuery = "select * from categories";
-                        $catQueryResult= mysqli_query($con,$catQuery);
-                        while($row= mysqli_fetch_assoc($catQueryResult)) {
-                            $title=$row['category_title'];
-                            echo '<li><a class=\'nav-link\'  href=\'#\'>'.$title.'</a></li>';
-                        }
-                    ?>
-                    <!--
-                    <li><a class='nav-link'  href='#'>Computers</a></li>
-                    <li><a class='nav-link'  href='#'>Mobiles</a></li>
-                    <li><a class='nav-link'  href='#'>Watches</a></li>
-                    <li><a class='nav-link'  href='#'>Cameras</a></li>-->
+                    <?php getCats(); ?>
                 </ul>
             </li>
             <li class="active">
@@ -95,19 +76,7 @@
                     Brands
                 </a>
                 <ul class="collapse show list-unstyled" id="pageSubmenu">
-                    <?php
-                    $catQuery = "select * from brands";
-                    $catQueryResult= mysqli_query($con,$catQuery);
-                    while($row= mysqli_fetch_assoc($catQueryResult)) {
-                        $title=$row['brand_title'];
-                        echo '<li><a class=\'nav-link\'  href=\'#\'>'.$title.'</a></li>';
-                    }
-                    ?>
-                    <!--<li><a class='nav-link'  href='#'>HP</a></li>
-                    <li><a class='nav-link'  href='#'>DELL</a></li>
-                    <li><a class='nav-link'  href='#'>APPLE</a></li>
-                    <li><a class='nav-link'  href='#'>SAMSUNG</a></li>
-                    <li><a class='nav-link'  href='#'>SONY</a></li>-->
+                    <?php getBrands(); ?>
                 </ul>
             </li>
             <li>
@@ -125,9 +94,20 @@
         </ul>
     </nav>
     <article id="content" class="container-fluid bg-white">
-
         <div class="row">
-                Coming Soon
+
+            <div class='col-sm-6 col-md-4 col-lg-3 text-center product-summary'>
+                <h5 class='text-capitalize'> MAC Book i7 </h5>
+                <img src='admin/product_images/apple-imac-mid-2010-27.jpg'>
+                <p> <b> Rs 230000/-  </b> </p>
+                <a href='#' class='btn btn-info btn-sm'>Details</a>
+                <a href='#'>
+                    <button class='btn btn-primary btn-sm'>
+                        <i class='fas fa-cart-plus'></i> Add to Cart
+                    </button>
+                </a>
+            </div>
+
         </div>
     </article>
 
